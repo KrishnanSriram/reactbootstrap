@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import HomePage from './pages/home';
+import AboutPage from './pages/about';
+import PricingPage from './pages/pricing';
+import FeaturesPage from './pages/feature';
+import PageNotFound from './pages/pagenotfound';
+import LoginPage from './pages/login';
+import Appbar from './components/appbar';
 
 function App() {
+  const [name, setName] = useState('React')
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Router>
+      <Appbar />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/home" component={HomePage} />
+        <Route path="/about" component={AboutPage} />
+        <Route path="/pricing" component={PricingPage} />
+        <Route path="/features" component={FeaturesPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route component={PageNotFound} />
+      </Switch>
+    </Router>
     </div>
   );
 }
